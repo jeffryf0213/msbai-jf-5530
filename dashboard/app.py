@@ -72,7 +72,7 @@ def load_data() -> pd.DataFrame:
           is_weekend
         FROM `jf-5530.citibike.daily`
         ORDER BY trip_date, region
-    """).to_dataframe()
+    """).to_dataframe(create_bqstorage_client=False)
     df["trip_date"] = pd.to_datetime(df["trip_date"])
     return df
 
