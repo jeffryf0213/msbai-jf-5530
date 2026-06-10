@@ -244,7 +244,7 @@ with col_left:
         color="weather_label",
         color_discrete_map={"Dry": "#f5a623", "Rainy": "#4a90d9", "Unknown": "#aaa"},
         labels={"tmax_f": "High temperature (°F)", "display_trips": trips_label},
-        trendline="lowess",
+        trendline=None,
         hover_data={"trip_date": "|%b %d, %Y", "tmax_f": ":.0f", "display_trips": ":,"},
         height=340,
     )
