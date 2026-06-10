@@ -3,3 +3,7 @@
 credentials.json
 credentials_clean.json
 /tmp/
+
+# Streamlit secrets (template is committed; real values are not)
+dashboard/.streamlit/secrets.toml
+dashboard/__pycache__/
