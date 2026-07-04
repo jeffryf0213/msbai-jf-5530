@@ -4,9 +4,11 @@ Class project for Dealing with Data: an ETL pipeline that loads Citibike data in
 
 ## Dashboard
 
-**Live URL:** https://msbai-jf-5530-hvqemrkuzisz9a6pqemm4p.streamlit.app
+**Live URL (Cloud Run):** https://citibike-dashboard-312339790647.us-east1.run.app
 
 Public — no login required. Shows how NYC weather affects Citibike ridership across the full 2013–present history.
+
+Also available on Streamlit Cloud: https://msbai-jf-5530-hvqemrkuzisz9a6pqemm4p.streamlit.app
 
 ## BigQuery Objects
 
