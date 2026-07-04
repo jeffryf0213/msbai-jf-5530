@@ -239,7 +239,7 @@ fig1.update_layout(
     plot_bgcolor="white",
     xaxis=dict(showgrid=False),
 )
-st.plotly_chart(fig1, use_container_width=True)
+st.plotly_chart(fig1, width='stretch')
 
 # ---------------------------------------------------------------------------
 # Chart 2 + Chart 3 side by side
@@ -293,7 +293,7 @@ with col_left:
         plot_bgcolor="white",
         yaxis=dict(tickformat=","),
     )
-    st.plotly_chart(fig2, use_container_width=True)
+    st.plotly_chart(fig2, width='stretch')
 
 # Chart 3 — Member vs casual over time
 with col_right:
@@ -344,7 +344,7 @@ with col_right:
         plot_bgcolor="white",
         xaxis=dict(showgrid=False),
     )
-    st.plotly_chart(fig3, use_container_width=True)
+    st.plotly_chart(fig3, width='stretch')
 
 # ---------------------------------------------------------------------------
 # Chart 4 — Seasonal patterns by rider type
@@ -407,7 +407,7 @@ if not df_season.empty:
         yaxis=dict(tickformat=","),
         xaxis=dict(showgrid=False),
     )
-    st.plotly_chart(fig4, use_container_width=True)
+    st.plotly_chart(fig4, width='stretch')
 else:
     st.info("Season data not available for the selected date range.")
 
