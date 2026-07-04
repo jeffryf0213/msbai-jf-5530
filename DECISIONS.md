@@ -141,15 +141,17 @@ ORDER BY 1, 2;
 
 ### Cross-check against operating reports
 
-Citibike publishes monthly operating reports at https://citibikenyc.com/system-data/operating-reports. Spot-checked against three months:
+Citibike publishes monthly operating reports at https://citibikenyc.com/system-data/operating-reports. Spot-checked against three months (BigQuery query filtered to `region = 'NYC'`; operating reports cover the full NYC system):
 
-| Month | Operating report | Loaded | Diff |
-|-------|-----------------|--------|------|
-| Jul 2023 | 1,282,941 | 1,281,807 | −0.09% ✅ |
-| Jan 2024 | 1,091,022 | 1,090,349 | −0.06% ✅ |
-| Jun 2024 | 2,031,887 | 2,030,122 | −0.09% ✅ |
+| Month | Operating report | Loaded (NYC) | Diff |
+|-------|-----------------|--------------|------|
+| Jul 2023 | 3,650,616 | 3,771,981 | **+3.3%** ⚠️ |
+| Jan 2024 | 1,881,808 | 1,881,679 | −0.007% ✅ |
+| Jun 2024 | 4,769,243 | 4,777,748 | +0.18% ✅ |
 
-All three spot-checks are within 0.1% — well within the 1% tolerance. No month is missing or double-counted.
+January and June are within 0.2% — well within tolerance. July 2023 is 3.3% above the operating report, which exceeds the 1% threshold and warrants investigation.
+
+**July 2023 discrepancy diagnosis:** The 2023 data was packaged as an annual zip (`2023-citibike-tripdata.zip`). Annual zips sometimes include a small number of late-arriving records from adjacent months that were backfilled after the original monthly exports were cut. This would inflate the July count without creating a missing month elsewhere. A definitive fix would require comparing the row-level source file timestamps against the monthly boundaries, which was not done in this pipeline version. The discrepancy is flagged here rather than silently patched.
 
 **Note on 2013–2020:** Jersey City data appears in the archive starting from late 2015. Pre-2015 JC rows are absent from the source files, not missing from our load.
 
