@@ -67,34 +67,35 @@ LIMIT 20;
 -- meaning no zip was loaded twice.
 
 
--- 5. Spot-check: July 2023 NYC (compare to operating report: 1,282,941)
+-- 5. Spot-check: July 2023 NYC (operating report: 3,650,616)
+-- NOTE: loaded count is 3,771,981 — 3.3% above report. Flagged in DECISIONS.md.
 SELECT
   SUM(num_trips) AS loaded_trips,
-  1282941        AS operating_report,
-  ROUND(ABS(SUM(num_trips) - 1282941) / 1282941 * 100, 2) AS pct_diff
+  3650616        AS operating_report,
+  ROUND(ABS(SUM(num_trips) - 3650616) / 3650616 * 100, 2) AS pct_diff
 FROM `jf-5530.citibike.daily`
 WHERE region = 'NYC'
   AND FORMAT_DATE('%Y-%m', trip_date) = '2023-07';
--- Expected: pct_diff < 1.0
+-- Actual result: 3.32% — exceeds 1% threshold; see DECISIONS.md for diagnosis.
 
 
--- 6. Spot-check: January 2024 NYC (compare to operating report: 1,091,022)
+-- 6. Spot-check: January 2024 NYC (operating report: 1,881,808)
 SELECT
   SUM(num_trips) AS loaded_trips,
-  1091022        AS operating_report,
-  ROUND(ABS(SUM(num_trips) - 1091022) / 1091022 * 100, 2) AS pct_diff
+  1881808        AS operating_report,
+  ROUND(ABS(SUM(num_trips) - 1881808) / 1881808 * 100, 2) AS pct_diff
 FROM `jf-5530.citibike.daily`
 WHERE region = 'NYC'
   AND FORMAT_DATE('%Y-%m', trip_date) = '2024-01';
--- Expected: pct_diff < 1.0
+-- Actual result: 0.007% ✅
 
 
--- 7. Spot-check: June 2024 NYC (compare to operating report: 2,031,887)
+-- 7. Spot-check: June 2024 NYC (operating report: 4,769,243)
 SELECT
   SUM(num_trips) AS loaded_trips,
-  2031887        AS operating_report,
-  ROUND(ABS(SUM(num_trips) - 2031887) / 2031887 * 100, 2) AS pct_diff
+  4769243        AS operating_report,
+  ROUND(ABS(SUM(num_trips) - 4769243) / 4769243 * 100, 2) AS pct_diff
 FROM `jf-5530.citibike.daily`
 WHERE region = 'NYC'
   AND FORMAT_DATE('%Y-%m', trip_date) = '2024-06';
--- Expected: pct_diff < 1.0
+-- Actual result: 0.18% ✅
