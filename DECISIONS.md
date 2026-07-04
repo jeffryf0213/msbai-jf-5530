@@ -1,7 +1,7 @@
 # Decisions Memo — Citibike + Weather Data Product
 
 **Project:** msbai-jf-5530  
-**Author:** Jeffry Febles (jf5530)  
+**Author:** Jeffry Feliz (jf5530)  
 **Course:** Dealing with Data, NYU Stern MSBAI
 
 ---
@@ -94,7 +94,7 @@ Chart 1 makes the weather signal visible alongside the ridership line, so a plan
 |--------|-----------------|--------|
 | **Correctness** | KPI total trips in dashboard matches `SELECT SUM(num_trips) FROM jf-5530.citibike.daily` for the same date range and region | ✅ Verified manually for 2024 full year: dashboard shows 20.3M, query returns 20,310,847 |
 | **Speed** | First meaningful paint (data loaded, charts visible) ≤ 5 seconds | ✅ Measured at ~2.5s on first load after cache warm; <1s on repeat |
-| **Public reach** | URL opens in incognito window with no login prompt | ✅ Confirmed |
+| **Public reach** | URL opens in incognito window with no login prompt | ✅ Confirmed — https://citibike-dashboard-312339790647.us-east1.run.app |
 | **Clarity** | A non-technical colleague can state what each chart shows without being prompted | ✅ Tested with two colleagues; both correctly identified the rain-suppression pattern in Chart 2 |
 
 ### Data caching
